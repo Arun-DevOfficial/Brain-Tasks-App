@@ -7,8 +7,3 @@ export type taskTypes = {
   completed: statusTypes;
   createdAt: string;
 };
-
-export type AddTaskTypes = {
-  isOpen: boolean ;
-  onClose: () => void;
-};
