@@ -13,7 +13,7 @@ export default function TaskList() {
   const { getTasks, deleteTask } = useTasks();
   const tasks = useSelector((state: RootState) => state.task.tasks);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [activeTaskMenu, setActiveTaskMenu] = useState<string | null>(null);
+  const [activeTaskMenu, setActiveTaskMenu] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterType>("All");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,13 +28,11 @@ export default function TaskList() {
   };
 
   // Function to toggle menu for a specific task
-  const toggleTaskMenu = (taskId: string) => {
+  const toggleTaskMenu = (taskId?: number) => {
     if (activeTaskMenu === taskId) {
-      // If this task's menu is already open, close it
-      setActiveTaskMenu(null);
+      setActiveTaskMenu(null); // Close if already open
     } else {
-      // Otherwise, open this task's menu and close others
-      setActiveTaskMenu(taskId);
+      setActiveTaskMenu(taskId ?? null); // Ensure undefined is converted to null
     }
   };
 
